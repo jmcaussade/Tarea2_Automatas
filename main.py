@@ -26,6 +26,15 @@ def parse_automaton(filename):
 
     return [states, alphabet, hole_transitions]
 
+def transform_transitions(transition_strings):
+    transformed_transitions = []
+    for transition_str in transition_strings:
+        parts = transition_str.split()
+        origin = parts[0]
+        symbol = parts[1]
+        destination = parts[-1]
+        transformed_transitions.append([origin, symbol, destination])
+    return transformed_transitions
 
 
 # Example usage
@@ -37,5 +46,9 @@ filename = "dfa_input.txt"  # Replace with the actual filename
 # print("Transitions:", transitions)
 
 
-x = parse_automaton(filename)
-print(x)
+parsing_automaton = parse_automaton(filename)
+print(parsing_automaton)
+dirty_transitions = parsing_automaton[2]
+print(f"dirty_transitions: {dirty_transitions}")
+transitions = transform_transitions(dirty_transitions)
+print(f"transitions: {transitions}")
